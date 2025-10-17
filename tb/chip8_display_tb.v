@@ -35,11 +35,9 @@ module tb_chip8_display;
         draw = 0;
 
         // Initialize display memory to zero to remove 'x' states
+        
         for (i = 0; i < 64; i = i + 1) begin
-            // Assuming display memory is written via addr and display_in
-            // Set display_in to zero and pulse draw to write zeros
-            // Here we simulate zeroing display by setting display_in = 0 and x,y accordingly
-            x = i % 64;
+            x = i % 64; // Here we simulate zeroing display by setting display_in = 0 and x,y accordingly
             y = 0;
             display_in = 8'b00000000;
             row_index = 0;
@@ -56,11 +54,10 @@ module tb_chip8_display;
         sprite_data = 8'b11110000;
         display_in = 8'b00001111;
 
-        // start drawing after reset
         #20 draw = 1;
         #10 draw = 0;
 
-        // run long enough to complete
+        // run long enough to complete, withing 8000 constraint
         #8000 $finish;
     end
 endmodule
